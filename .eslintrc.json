@@ -13,5 +13,5 @@
     "@typescript-eslint/no-non-null-assertion": "off",
     "import/prefer-default-export": "off"
   },
-  "ignorePatterns": ["/node_modules/**", "/build/**"]
+  "ignorePatterns": ["/node_modules/**", "/build/**", "/next.config.js"]
 }
