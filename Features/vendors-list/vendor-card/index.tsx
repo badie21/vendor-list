@@ -30,9 +30,9 @@ const VendorCard = ({ card }: { card: TVendorItem }) => {
       <div className={styles['card__body']}>
         <h3 className={styles['card__title']}>{card.data.title}</h3>
         <div className={styles['card__body--description']}>
-          {cardDescriptionArr.map((desc, index) => (
-            <span key={index}>{desc}</span>
-          ))}
+          {cardDescriptionArr.map((desc, index) =>
+            desc.trim().length ? <span key={index}>{desc}</span> : ''
+          )}
         </div>
         <div className={styles['card__ratingAndView']}>
           <span className={styles['card__ratingAndView--view']}>
