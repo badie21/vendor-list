@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { TGetVendorsListQueryParam } from './interface';
-// import { CardItem } from './yourDataTypes'; // Import or define your data types
+import {
+  TGetVendorListQueryParam,
+  TResponseVendorsListQuery,
+} from './interface';
 
 export const vendorApi = createApi({
   reducerPath: 'vendorApi',
@@ -8,7 +10,10 @@ export const vendorApi = createApi({
     baseUrl: 'https://snappfood.ir/mobile/v3/restaurant',
   }),
   endpoints: (builder) => ({
-    getVendors: builder.query<unknown, TGetVendorsListQueryParam>({
+    getVendors: builder.query<
+      TResponseVendorsListQuery,
+      TGetVendorListQueryParam
+    >({
       query: (params) => ({
         url: '/vendors-list',
         params,
@@ -17,4 +22,4 @@ export const vendorApi = createApi({
   }),
 });
 
-export const { useGetVendorsQuery } = vendorApi;
+export const { useLazyGetVendorsQuery } = vendorApi;

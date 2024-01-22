@@ -1,10 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { TVendorItem } from '../services/vendors/interface';
 
 export const vendorsSlice = createSlice({
   name: 'vendors',
   initialState: {
-    currentPage: 1,
+    currentPage: 0,
     isLoading: false,
+    list: [] as TVendorItem[],
+    hasNextPage: false,
   },
   reducers: {
     incrementPage: (state) => {
@@ -13,8 +16,15 @@ export const vendorsSlice = createSlice({
     setLoading: (state, action) => {
       state.isLoading = action.payload;
     },
+    setHasNextPage: (state, action: PayloadAction<boolean>) => {
+      state.hasNextPage = action.payload;
+    },
+    addListItems: (state, action: PayloadAction<TVendorItem[]>) => {
+      state.list = [...state.list, ...action.payload];
+    },
   },
 });
 
-export const { incrementPage, setLoading } = vendorsSlice.actions;
+export const { incrementPage, setLoading, addListItems, setHasNextPage } =
+  vendorsSlice.actions;
 export default vendorsSlice.reducer;
