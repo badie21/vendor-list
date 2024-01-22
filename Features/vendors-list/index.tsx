@@ -1,15 +1,19 @@
+import { useCallback, useEffect } from 'react';
+
 import InfinitScroll from '@/components/infinit-scroll';
-import { TVendorItem } from '@/redux/services/vendors/interface';
-import { useLazyGetVendorsQuery } from '@/redux/services/vendors/vendorsApi';
+
+import VendorCard from './vendor-card';
+
+import { useAppDispatch, useAppSelector } from '@/redux/store';
 import {
   addListItems,
   incrementPage,
   setHasNextPage,
   setLoading,
 } from '@/redux/slices/vendor-slice';
-import { useAppDispatch, useAppSelector } from '@/redux/store';
-import { useCallback, useEffect } from 'react';
-import VendorCard from './vendor-card';
+import { useLazyGetVendorsQuery } from '@/redux/services/vendors/vendorsApi';
+
+import { TVendorItem } from '@/redux/services/vendors/interface';
 
 const VendorList = () => {
   const dispatch = useAppDispatch();

@@ -1,5 +1,6 @@
-import { useVirtualizer } from '@tanstack/react-virtual';
 import { useEffect, useRef } from 'react';
+
+import { useVirtualizer } from '@tanstack/react-virtual';
 
 interface Props<T> {
   hasNextPage: boolean;

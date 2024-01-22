@@ -1,8 +1,10 @@
+import Image from 'next/image';
+
+import { numberSeprator } from '@/utils/helpers';
+
 import { TVendorItem } from '@/redux/services/vendors/interface';
 
 import styles from './styles.module.scss';
-import Image from 'next/image';
-import { numberSeprator } from '@/utils/helpers';
 
 const VendorCard = ({ card }: { card: TVendorItem }) => {
   const cardDescriptionArr = card.data.description.split(',');
