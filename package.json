@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.0.1",
+    "@tanstack/react-virtual": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "eslint-config-prettier": "^9.1.0",
     "next": "14.1.0",
