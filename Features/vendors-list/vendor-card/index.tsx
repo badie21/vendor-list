@@ -2,10 +2,10 @@ import { TVendorItem } from '@/redux/services/vendors/interface';
 
 import styles from './styles.module.scss';
 import Image from 'next/image';
+import { numberSeprator } from '@/utils/helpers';
 
 const VendorCard = ({ card }: { card: TVendorItem }) => {
   const cardDescriptionArr = card.data.description.split(',');
-  console.log(cardDescriptionArr);
 
   return (
     <div className={styles['card']}>
@@ -26,7 +26,7 @@ const VendorCard = ({ card }: { card: TVendorItem }) => {
         />
       </div>
       <div className={styles['card__body']}>
-        <span className={styles['card__title']}>{card.data.title}</span>
+        <h3 className={styles['card__title']}>{card.data.title}</h3>
         <div className={styles['card__body--description']}>
           {cardDescriptionArr.map((desc, index) => (
             <span key={index}>{desc}</span>
@@ -34,15 +34,15 @@ const VendorCard = ({ card }: { card: TVendorItem }) => {
         </div>
         <div className={styles['card__ratingAndView']}>
           <span className={styles['card__ratingAndView--view']}>
-            ({card.data.countReview.toLocaleString('fa')})
+            ({numberSeprator(card.data.countReview)})
           </span>
           <span className={styles['card__ratingAndView--rate']}>
-            {card.data.rate.toLocaleString('fa')}
+            {numberSeprator(card.data.rate)}
           </span>
         </div>
         <div className={styles['card__body--delivery']}>
           <span>{card.data.isZFExpress ? 'ارسال اکسپرس' : 'پیک فروشنده'}</span>
-          <span>{card.data.deliveryFee.toLocaleString('fa')} تومان </span>
+          <span>{numberSeprator(card.data.deliveryFee)} تومان </span>
         </div>
       </div>
     </div>
