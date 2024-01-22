@@ -1,5 +1,5 @@
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { FC, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 interface Props<T> {
   hasNextPage: boolean;
@@ -8,6 +8,7 @@ interface Props<T> {
   count: number;
   isFetching: boolean;
   renderItemFn: (row: T) => JSX.Element;
+  cardSize: number;
 }
 
 const InfinitScroll = <T,>({
@@ -17,11 +18,12 @@ const InfinitScroll = <T,>({
   hasNextPage,
   isFetching,
   renderItemFn,
+  cardSize,
 }: Props<T>) => {
   const rowVirtualizer = useVirtualizer({
     count: count,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => 300,
+    estimateSize: () => cardSize,
     overscan: 3,
   });
 
@@ -30,20 +32,9 @@ const InfinitScroll = <T,>({
   useEffect(() => {
     const [lastItem] = [...rowVirtualizer.getVirtualItems()].reverse();
 
-    console.log(lastItem);
-
     if (!lastItem) {
       return;
     }
-
-    console.log(
-      'here',
-      lastItem.index >= allRows.length,
-      hasNextPage,
-      isFetching
-    );
-
-    // return;
     if (lastItem.index >= allRows.length && hasNextPage && !isFetching) {
       fetchNextPage();
     }
@@ -75,7 +66,6 @@ const InfinitScroll = <T,>({
         {rowVirtualizer.getVirtualItems().map((virtualRow) => {
           const isLoaderRow = virtualRow.index > allRows.length - 1;
           const item = allRows[virtualRow.index];
-          console.log(virtualRow);
           return (
             <div
               key={virtualRow.index}

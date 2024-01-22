@@ -56,6 +56,7 @@ const VendorList = () => {
         isFetching={isLoading || isFetching}
         fetchNextPage={fetchNextpage}
         renderItemFn={renderCardHandler}
+        cardSize={250}
       />
     )
   );
